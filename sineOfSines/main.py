@@ -3,27 +3,29 @@ import matplotlib.patches as mpatches
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
 
+t = np.linspace(0,10*np.pi,1000)
+
+M =10
+for iPlot in range(1,M+1):
+  for i in range(iPlot):
+    print(iPlot,i)
+    y = np.sin(t+i*2*np.pi/iPlot)
+    plt.plot(t,y+(3*(iPlot-1)-M),color='blue',linewidth=0.5)
 
 
-x_bounds = [-10,10]
-y_bounds = [-10,10]
-
-numTries = 5
-r_min = 0.1
-r_max = 2
-circles = []
+plt.grid(False)
+plt.axis('off')
+plt.savefig('%dsines.svg' % M)
+plt.savefig('%dsines.png' % M)
+plt.show()
 
 '''
-Draw circles:
-1) Pick random point in the space
-2) Check to make sure it is at least positive r_min from the nearest circle, if its not go back to (1)
-3) Draw the circle as big as possible up to r_max
-4) Save circle[i] as [x,y,r]
-5) Repeat for numTries
+plt.plot(t,-3+np.sin(t))
+plt.plot(t,np.sin(t))
+plt.plot(t,np.sin(t+np.pi))
+plt.plot(t,3+np.sin(t))
+plt.plot(t,3+np.sin(t+np.pi/3))
+plt.plot(t,3+np.sin(t+2*np.pi/3))
 '''
+#plt.axis('equal')
 
-for i in range(numTries):
-  cx, cy = np.random.uniform(*x_bounds),np.random.uniform(*y_bounds)
-  c = np.array([cx,cy])
-  r = max
-  print(c)
