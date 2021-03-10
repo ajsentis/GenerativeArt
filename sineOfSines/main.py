@@ -19,13 +19,4 @@ plt.savefig('%dsines.svg' % M)
 plt.savefig('%dsines.png' % M)
 plt.show()
 
-'''
-plt.plot(t,-3+np.sin(t))
-plt.plot(t,np.sin(t))
-plt.plot(t,np.sin(t+np.pi))
-plt.plot(t,3+np.sin(t))
-plt.plot(t,3+np.sin(t+np.pi/3))
-plt.plot(t,3+np.sin(t+2*np.pi/3))
-'''
-#plt.axis('equal')
 
