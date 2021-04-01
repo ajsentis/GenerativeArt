@@ -3,14 +3,14 @@ import matplotlib.patches as mpatches
 from matplotlib.collections import PatchCollection
 import matplotlib.pyplot as plt
 
-t = np.linspace(0,10*np.pi,1000)
+t = np.linspace(-5*np.pi,0*np.pi,1000)
 
 M =10
 for iPlot in range(1,M+1):
   for i in range(iPlot):
     print(iPlot,i)
-    y = np.sin(t+i*2*np.pi/iPlot)
-    plt.plot(t,y+(3*(iPlot-1)-M),color='blue',linewidth=0.5)
+    y = np.cos(t*1/(1-0.07*i)+0*i*2*np.pi/iPlot)
+    plt.plot(t,y+(3*(iPlot-1)-M),color='k',linewidth=0.9)
 
 
 plt.grid(False)

@@ -18,37 +18,58 @@ def FG_param1(r, s, t):
 
 def plotTiles(nPlots, nIters,rMin, rMax):
 	t = np.linspace(0,2*pi,1000)
-	sSpan = np.linspace(0,1,nPlots)
+	sSpan = np.linspace(1,0,nPlots)
 	rSpan = np.linspace(rMin,rMax,nIters)
 	fig = plt.figure()
-	gs = fig.add_gridspec(nPlots,2, hspace=0.1, wspace = 0.1)
+	gs = fig.add_gridspec(nPlots,4, hspace=0.1, wspace = 0.1)
 	ax = gs.subplots()
 	for plot in range(nPlots):
 		for r in rSpan:
 			x,y = FG_param1(r, np.sqrt(sSpan[plot]), t)
 			ax[plot,0].plot(x,y,'b',linewidth=0.5)
 			ax[plot,1].plot(x,y,'b',linewidth=0.5)
-		ax[plot,0].set_xlim(-rMax-0.5,rMax+0.5)
-		ax[plot,0].set_ylim(-rMax-0.5,rMax+0.5)
-		ax[plot,0].axis('Off')
-		ax[plot,0].set_aspect('equal', 'box')
 
-		ax[plot,1].set_xlim(-rMin-0.1,rMin+0.1)
-		ax[plot,1].set_ylim(-rMin-0.1,rMin+0.1)
-		ax[plot,1].set_aspect('equal', 'box')
+			ax[plot,2].plot(x+0.75*rMax,y+0.75*rMax,'b',linewidth=0.5)
+			ax[plot,2].plot(x+0.75*rMax,y-0.75*rMax,'b',linewidth=0.5)
+			ax[plot,2].plot(x-0.75*rMax,y+0.75*rMax,'b',linewidth=0.5)
+			ax[plot,2].plot(x-0.75*rMax,y-0.75*rMax,'b',linewidth=0.5)
+
+			ax[plot,3].plot(x+0.75*rMax,y+0.75*rMax,'b',linewidth=0.5)
+			ax[plot,3].plot(x+0.75*rMax,y-0.75*rMax,'b',linewidth=0.5)
+			ax[plot,3].plot(x-0.75*rMax,y+0.75*rMax,'b',linewidth=0.5)
+			ax[plot,3].plot(x-0.75*rMax,y-0.75*rMax,'b',linewidth=0.5)
+		
+		ax[plot,1].set_xlim(-rMax-0.25,rMax+0.25)
+		ax[plot,1].set_ylim(-rMax-0.25,rMax+0.25)
 		ax[plot,1].axis('Off')
+		ax[plot,1].set_aspect('equal', 'box')
+
+		ax[plot,0].set_xlim(-rMin-0.1,rMin+0.1)
+		ax[plot,0].set_ylim(-rMin-0.1,rMin+0.1)
+		ax[plot,0].set_aspect('equal', 'box')
+		ax[plot,0].axis('Off')
+
+		ax[plot,2].set_xlim(-2*rMax-0.1,2*rMax+0.1)
+		ax[plot,2].set_ylim(-2*rMax-0.1,2*rMax+0.1)
+		ax[plot,2].set_aspect('equal', 'box')
+		ax[plot,2].axis('Off')
+
+		ax[plot,3].set_xlim(-rMax,rMax)
+		ax[plot,3].set_ylim(-rMax,rMax)
+		ax[plot,3].set_aspect('equal', 'box')
+		ax[plot,3].axis('Off')
 	figure = ax
 	return figure
 r_min = 0.1
 r_max = 4
 
-nIters = 20
+nIters = 10
 nPlots = 5
 print()
 tile = plotTiles(nPlots, nIters,r_min, r_max)
 
 plt.grid(False)
-
-
-
+plt.savefig('squircles%d_%d.svg' %(nPlots,nIters))
+plt.savefig('squircles%d_%d.png' %(nPlots,nIters))
 plt.show()
+
